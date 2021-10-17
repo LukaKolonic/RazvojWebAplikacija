@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Projekt.Models.Potkategorija>
+
+@{
+    ViewBag.Title = "Subcategories";
+}
+
+<h2>Subcategories</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddSubcategory")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDPotkategorija)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KategorijaID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NazivPotk)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDPotkategorija)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KategorijaID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NazivPotk)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditSubcategory", new {  id=item.IDPotkategorija}, new { @class = "btn btn-info btn-sm" }) 
+            @Html.ActionLink("Delete", "DeleteSubcategory", new {  id=item.IDPotkategorija}, new { @class = "btn btn-danger btn-sm" })
+        </td>
+    </tr>
+}
+
+</table>

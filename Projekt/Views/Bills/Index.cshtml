@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Review of the bills from all customers</h2>
+<hr />
+@Html.Label(expression:"customer", labelText:"Customer:")
+@Html.TextBox(name:"customer", @*htmlAttributes: new { @class="form-control"},*@ value:null)
+<hr />
+
+<div id="racuni">
+    <h3>Customer bills</h3>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Broj računa</th>
+            <th>Datum izdavanja</th>
+            <th></th>
+        </tr>
+    </table>
+
+</div>
+
+<p id="info"></p>
+
+@section scripts {
+    <script>
+
+        $("#racuni").hide();
+        $("#customer").autocomplete(
+            {
+                source: '@Url.Action(actionName: "GetAutocomplete",controllerName:"Ajax")',
+                select: function (e, ui) {
+                    e.preventDefault();
+
+                    var kupac = {
+                        ime: ui.item.label,
+                        id: ui.item.value
+                    };
+
+                    $(this).val(kupac.ime);
+                    prikaziRacune(kupac.id);
+                    $('h3').html(`Računi kupca ${kupac.ime}`)
+                },
+                focus: function (e, ui) {
+                    e.preventDefault();
+                    $(this).val(ui.item.label)
+                },
+                minLength: 2
+            }
+        );
+
+        function prikaziRacune(id) {
+            $.ajax({
+                url: '@Url.Action(actionName: "GetRacuni",controllerName:"Ajax")',
+                data: { id },
+                success: function (racuni) {
+                    if (racuni.length > 0) {
+                        $("#racuni").fadeIn(500);
+                        $("p#info").html("");
+
+                        resetTable();
+
+                        $(racuni).each((index, racun) => {
+                            $("table.table").append(`<tr>
+                                                     <td>${racun.IDRacun}</td>
+                                                     <td>${racun.BrojRacuna}</td>
+                                                     <td>${getDateFromJson(racun.DatumIzdavanja)}</td>
+                                                     <td><button class="btn btn-sm btn-danger stavke", data-id=${racun.IDRacun}>Stavke</button></td>
+                                                     </tr>`);
+                        })
+                            
+
+                    }
+                    else {
+                        $("#racuni").hide();
+                        $("p#info").html("Kupac nema računa")
+                    }
+                }
+            });
+        }
+
+        function resetTable() {
+            $("table.table tr:not(:first-of-type)").remove();
+        }
+
+        function getDateFromJson(jsonDate) {
+            var startIndex = jsonDate.indexOf("(") + 1;
+            var endIndex = jsonDate.lastIndexOf(")");
+            var ms = Number(jsonDate.substring(startIndex, endIndex));
+            return new Date(ms).toLocaleDateString();
+        }
+
+        const myTable = $('.table')
+            .on('click', '.stavke', stavkeEvent)
+
+        function stavkeEvent(e) {
+            const { id } = this.dataset;
+            showStavke(id);
+        }
+
+        function showStavke(id) {
+            $.ajax({
+                url: `/Bills/Stavke/${id}`,
+                method: 'get'
+            })
+                .done(function (message) {
+                    console.log('Uspjeh');
+                    window.location.href = `/Bills/Stavke/${id}`;
+
+                })
+                .fail(function () {
+                    console.log('Greska');
+                })
+           
+        }
+
+    </script>
+
+    }

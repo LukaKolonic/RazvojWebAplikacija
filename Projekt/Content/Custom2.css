@@ -1,0 +1,78 @@
+﻿
+#lblNumber {
+    font: 50px;
+    font-weight: bold;
+    margin-left: 12px;
+    color: white;
+}
+
+.list {
+    margin-left: 30px;
+    color: white;
+}
+
+.header {
+    background-color: black;
+    width: 1800px;
+    height: 80px;
+    display: inline-block;
+}
+
+#mojaForma {
+    width: 1800px;
+    margin-left: 50px;
+    margin-top: 30px;
+}
+
+#ddlDrazava {
+    margin-left: 5px;
+}
+
+#ddlGrad {
+    margin-left: 30px;
+    margin-top: -70px;
+}
+
+#lblStateCity {
+    color: white;
+    font: 50px;
+    font-weight: bold;
+}
+
+.gridview {
+   
+    padding: 5px;
+    margin: 2% auto;
+}
+
+.gridview a {
+    margin: auto 1%;
+    border-radius: 50%;
+    background-color:whitesmoke;
+    padding: 5px 10px 5px 10px;
+    color:white;
+    text-decoration: none;
+ }
+
+.gridview a:hover {
+
+    background-color:cornflowerblue;
+    color:white;
+ }
+
+.gridview span {
+    
+    background-color:cornflowerblue;
+    color:white;
+    border-radius: 50%;
+    padding: 5px 10px 5px 10px;
+ }
+
+#btnHome{
+    float:right;
+    font-size:large;
+    margin-right:10px;
+    margin-top:-39px;
+    height:65px;
+}
+

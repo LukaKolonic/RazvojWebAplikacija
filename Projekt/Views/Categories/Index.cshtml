@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Projekt.Models.Kategorija>
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+<h2>Categories</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddCategory")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDKategorija)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NazivKat)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDKategorija)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NazivKat)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditCategory", new {  id=item.IDKategorija  }, new { @class = "btn btn-info btn-sm" }) 
+            @Html.ActionLink("Delete", "DeleteCategory", new {  id=item.IDKategorija }, new { @class = "btn btn-danger btn-sm" })
+        </td>
+    </tr>
+}
+
+</table>

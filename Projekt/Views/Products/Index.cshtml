@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Projekt.Models.Proizvod>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<h2>Products</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddProduct")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDProizvod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BrojProizvoda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Boja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinimalnaKolicinaNaSkladistu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CijenaBezPdv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PotkategorijaID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDProizvod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BrojProizvoda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Boja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinimalnaKolicinaNaSkladistu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CijenaBezPdv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PotkategorijaID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditProduct", new {  id=item.IDProizvod }, new { @class = "btn btn-info btn-sm" })
+            @Html.ActionLink("Delete", "DeleteProduct", new {  id=item.IDProizvod  }, new { @class = "btn btn-danger btn-sm" })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Projekt.Models.Stavka>
+
+@{
+    ViewBag.Title = "Stavke";
+}
+
+<h2>Stavke</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDStavka)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RacunID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProizvodID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proizvod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proizvod.Potkategorija)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proizvod.Potkategorija.Kategorija)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KrKartica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Komercijalist)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.IDStavka)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RacunID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProizvodID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Proizvod.Naziv)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Proizvod.Potkategorija.NazivPotk)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Proizvod.Potkategorija.Kategorija.NazivKat)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.KrKartica.Broj)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Komercijalist.Ime)
+        @Html.DisplayFor(modelItem => item.Komercijalist.Prezime)
+    </td>
+
+
+</tr>
+}
+
+</table>

@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <h2>If you want to use the Customers&Products application you must log in!</h2>
+}
+else
+{
+    <h2>Welcome to Customers&Products application </h2>
+}
+
+
